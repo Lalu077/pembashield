@@ -3,60 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PembaShield v2.2 - Kamili</title>
+<title>PembaShield - Chake Chake</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a1020;color:white;padding:20px;font-family:system-ui,sans-serif}
-.container{max-width:600px;margin:0 auto}
-.header{text-align:center;padding:20px 0}
-.logo-img{width:130px;height:130px;border-radius:50%;border:3px solid #0ea5e9;object-fit:cover;margin:0 auto;display:block;background:#111a30}
-.lang-switch{display:flex;justify-content:center;gap:10px;margin:20px 0}
-.lang-btn{padding:8px 18px;border-radius:20px;border:1px solid #334155;background:#1e293b;color:white;cursor:pointer;font-weight:bold}
-.lang-btn.active{background:#2563eb;border-color:#2563eb}
-.card{background:#111a30;border:1px solid #1e293b;border-radius:16px;padding:20px;margin-bottom:15px}
-textarea{width:100%;background:#0a1020;border:1px solid #334155;color:white;padding:12px;border-radius:10px;outline:none}
-.btn{width:100%;padding:13px;background:#0ea5e9;border:none;border-radius:10px;color:black;font-weight:bold;cursor:pointer;margin-top:12px}
-.ex-btn{background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:8px 12px;border-radius:20px;font-size:12px;margin:5px;cursor:pointer}
-.result{margin-top:15px;display:none;padding:15px;border-radius:10px;font-weight:bold}
-.result.show{display:block}
-.safe{background:#052e16;border:1px solid #16a34a;color:#4ade80}
-.danger{background:#450a0a;border:1px solid #dc2626;color:#fca5a5}
-.warn{background:#422006;border:1px solid #ea580c;color:#fdba74}
-ul{list-style:none}
-li{border-bottom:1px solid #1e293b;padding:8px 0}
-li:last-child{border:none}
+body{margin:0;background:#0a1020;color:#fff;font-family:sans-serif;padding:15px}
+.box{max-width:600px;margin:auto}
+.top{text-align:center;padding:15px}
+.lang{display:flex;justify-content:center;gap:8px;margin:15px 0}
+.lang button{padding:8px 16px;border-radius:20px;border:1px solid #333;background:#1e293b;color:#fff;cursor:pointer}
+.lang button.on{background:#2563eb}
+.card{background:#111a30;border:1px solid #222;padding:16px;border-radius:12px;margin:10px 0}
+textarea{width:100%;background:#0a1020;border:1px solid #333;color:#fff;padding:10px;border-radius:8px}
+.btn{width:100%;background:#0ea5e9;border:0;padding:12px;border-radius:8px;font-weight:bold;margin-top:10px;cursor:pointer}
+.hide{display:none}
+.show{display:block;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.red{background:#3f0a0a;border:1px solid red;color:#f99}
+.green{background:#0a2e16;border:1px solid green;color:#6f6}
+.yellow{background:#3f2a0a;border:1px solid orange;color:#fc6}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <img src="logo.png" class="logo-img" alt="PembaShield" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1087/1087815.png'">
-    <h1 style="margin-top:15px">🛡️ PembaShield</h1>
-    <p style="color:#94a3b8;font-size:12px" data-sw="KINGA YA ULAGHAI ZANZIBAR - CHAKE CHAKE" data-en="ZANZIBAR SCAM PROTECTION - CHAKE CHAKE">KINGA YA ULAGHAI ZANZIBAR - CHAKE CHAKE</p>
-    <div class="lang-switch">
-      <button id="btn-sw" class="lang-btn active">🇹🇿 SW</button>
-      <button id="btn-en" class="lang-btn">🇺🇸 EN</button>
-    </div>
-  </div>
+<div class="box">
+<div class="top">
+<h2>🛡️ PembaShield</h2>
+<p id="sub" style="color:#888;font-size:12px">KINGA YA ULAGHAI ZANZIBAR</p>
+<div class="lang">
+<button id="b-sw" class="on" onclick="lang('sw')">🇹🇿 SW</button>
+<button id="b-en" onclick="lang('en')">🇺🇸 EN</button>
+</div>
+</div>
 
-  <div class="card">
-    <h3 data-sw="Chunguza Ujumbe wa Utapeli" data-en="Scan Scam Message">Chunguza Ujumbe wa Utapeli</h3>
-    <p style="color:#64748b;font-size:13px;margin:8px 0" data-sw="Bandika ujumbe wa WhatsApp / SMS unaoshuku" data-en="Paste suspicious WhatsApp / SMS">Bandika ujumbe wa WhatsApp / SMS unaoshuku</p>
-    <textarea id="msg" rows="4" placeholder="Mf: Hongera! Umechaguliwa kupata 500,000 TZS... bonyeza bit.ly/xyz"></textarea>
-    <button class="btn" onclick="scanMsg()" data-sw="🔍 CHUNGUZA SASA" data-en="🔍 SCAN NOW">🔍 CHUNGUZA SASA</button>
-    <div id="result" class="result"></div>
-    <div style="margin-top:12px">
-      <button class="ex-btn" onclick="setExample('Hongera! Umechaguliwa kupata 500,000 TZS bonyeza bit.ly/xyz')">Mfano 1</button>
-      <button class="ex-btn" onclick="setExample('Tuma PIN yako ya M-Pesa uthibitishe')">Mfano 2</button>
-    </div>
-  </div>
+<div class="card">
+<p id="t1">Bandika ujumbe wa WhatsApp/SMS</p>
+<textarea id="msg" rows="3" placeholder="Hongera umechaguliwa..."></textarea>
+<button class="btn" onclick="check()" id="t2">🔍 CHUNGUZA</button>
+<div id="res" class="hide"></div>
+</div>
 
-  <div class="card">
-    <h3 data-sw="Dalili 10 za Ulaghai Zanzibar" data-en="10 Scam Signs in Zanzibar">Dalili 10 za Ulaghai Zanzibar</h3>
-    <ul style="margin-top:12px;color:#cbd5e1;font-size:14px;line-height:2">
-      <li data-sw="1. Ahadi ya pesa nyingi haraka bila kazi" data-en="1. Promise of huge quick money without work">1. Ahadi ya pesa nyingi haraka bila kazi</li>
-      <li data-sw="2. Kuomba PIN au namba ya siri ya M-Pesa / Tigo Pesa" data-en="2. Asking for your M-Pesa / Tigo Pesa PIN">2. Kuomba PIN au namba ya siri ya M-Pesa / Tigo Pesa</li>
-      <li data-sw="3. Link ya kutiliwa shaka (bit.ly, tinyurl)" data-en="3. Suspicious short link (bit.ly, tinyurl)">3. Link ya kutiliwa shaka (bit.ly, tinyurl)</li>
-      <li data-sw="4. Kukuharakisha 'Fanya sasa hivi'" data-en="4. Pressuring 'Act now or lose'">4. Kukuharakisha 'Fanya sasa hivi'</li>
-      <li data-sw="5. Kutumia namba binafsi kujifanya kampuni" data-en="5. Using personal number as company">5. Kutumia namba binafsi kujifanya kampuni</li>
-      <li data-sw="6. Kuomba utume pesa ndogo up
+<div class="card">
+<p id="t3" style="font-weight:bold">Dalili 10 za Ulaghai:</p>
+<div id="list" style="font-size:14px;line-height:1.9;color:#ccc;margin-top:8px">
+1. Ahadi ya pesa haraka<br>
+2. Kuomba PIN ya M-Pesa<br>
+3. Link fupi bit.ly<br>
+4. Kukuharakisha<br>
+5. Namba binafsi kama kampuni<br>
+6. Kuomba pesa ndogo upate kubwa<br>
+7. Lugha mbovu<br>
+8. Kutishia akaunti kufungwa<br>
+9. Kuomba picha ya kitambulisho<br>
+10. Zawadi usiyoomba
+</div>
+</div>
+</div>
+
+<script>
+function lang(l){
+ localStorage.setItem('l',l);
+ document.getElementById('b-sw').className = l=='sw'?'on':'';
+ document.getElementById('b-en').className = l=='en'?'on':'';
+ if(l=='sw'){
+  document.getElementById('sub').innerText='KINGA YA ULAGHAI ZANZIBAR';
+  document.getElementById('t1').innerText='Bandika ujumbe wa WhatsApp/SMS';
+  document.getElementById('t2').innerText='🔍 CHUNGUZA';
+  document.getElementById('t3').innerText='Dalili 10 za Ulaghai:';
+  document.getElementById('list').innerHTML="1. Ahadi ya pesa haraka<br>2. Kuomba PIN ya M-Pesa<br>3. Link fupi bit.ly<br>4. Kukuharakisha<br>5. Namba binafsi kama kampuni<br>6. Kuomba pesa ndogo upate kubwa<br>7. Lugha mbovu<br>8. Kutishia akaunti kufungwa<br>9. Kuomba picha ya kitambulisho<br>10. Zawadi usiyoomba";
+ }else{
+  document.getElementById('sub').innerText='ZANZIBAR SCAM PROTECTION';
+  document.getElementById('t1').innerText='Paste WhatsApp/SMS message';
+  document.getElementById('t2').innerText='🔍 SCAN NOW';
+  document.getElementById('t3').innerText='10 Scam Signs:';
+  document.getElementById('list').innerHTML="1. Quick money promise<br>2. Asking M-Pesa PIN<br>3. Short link bit.ly<br>4. Urgency pressure<br>5. Personal number as company<br>6. Small fee for big reward<br>7. Poor language<br>8. Account closure threat<br>9. Asking ID photo<br>10. Prize you never applied";
+ }
+}
+function check(){
+ let t=document.getElementById('msg').value.toLowerCase();
+ let r=document.getElementById('res');
+ if(!t){return}
+ let s=0; ["hongera","pin","bit.ly","zawadi","500,000","urgent"].forEach(w=>{if(t.includes(w))s++});
+ r.className='show '+(s>=2?'red':s==1?'yellow':'green');
+ r.innerText=s>=2?'⚠️ HATARI - UTAPELI!':s==1?'⚠️ Inatia shaka':'✅ Inaonekana salama';
+}
+lang(localStorage.getItem('l')||'sw');
+</script>
+</body>
+</html>
