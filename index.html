@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PembaShield - Kinga ya Utapeli Zanzibar</title>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#0a0e1a;color:#fff;line-height:1.5}
+header{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;background:#10182f;position:sticky;top:0;z-index:10;border-bottom:1px solid #1e2a4a}
+.logo{font-weight:900;font-size:22px;letter-spacing:0.5px}
+.logo span{color:#00e5a0}
+.btn{border:1px solid #2a365a;background:#1a2442;color:#fff;padding:7px 14px;border-radius:20px;margin-left:6px;cursor:pointer;font-weight:600}
+.btn.active{background:#00e5a0;color:#000;border-color:#00e5a0}
+.container{max-width:900px;margin:0 auto;padding:18px}
+.card{background:#111a33;border:1px solid #22305c;border-radius:18px;padding:20px;margin-top:16px;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+textarea{width:100%;box-sizing:border-box;background:#0e1730;color:#fff;border:1px solid #2a3a6a;border-radius:12px;padding:14px;min-height:120px;font-size:16px;outline:none}
+textarea:focus{border-color:#00e5a0}
+.action{width:100%;background:#00e5a0;color:#000;border:none;padding:15px;border-radius:12px;font-weight:900;font-size:16px;margin-top:12px;cursor:pointer;letter-spacing:0.5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.item{background:#0e1730;border:1px solid #24345f;border-radius:14px;padding:14px;font-size:13px}
+.item b{display:block;margin-bottom:4px;color:#7ad7ff;font-size:14px}
+.safe{color:#00e5a0;font-weight:900;font-size:22px}.danger{color:#ff5a5a;font-weight:900;font-size:22px}.warn{color:#ffb020;font-weight:900;font-size:22px}
+small{color:#a9b6d8}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Pemba<span>Shield</span></div>
+<div><button id="b-sw" class="btn active" onclick="setLang('sw')">🇹🇿 SW</button><button id="b-en" class="btn" onclick="setLang('en')">🇺🇸 EN</button></div>
+</header>
+<div class="container">
+<div class="card">
+<h2 id="t1" style="margin:0 0 6px 0">Kinga ya Utapeli kwa Wazanzibari</h2>
+<p id="t2" style="margin:0 0 14px 0;color:#a9b6d8">Bandika ujumbe wa SMS au link hapa kuchunguza usalama wake</p>
+<textarea id="msg" placeholder="Mfano: Hongera umechaguliwa! Bonyeza bit.ly..."></textarea>
+<button class="action" onclick="check()" id="t3">CHUNGUZA SASA</button>
+<div id="res" style="margin-top:18px"></div>
+</div>
+<div class="card">
+<h3 id="t4" style="margin:0 0 12px 0">Dalili 10 za Utapeli Zanzibar</h3>
+<div class="grid">
+<div class="item"><b>1. Hongera Umeshinda</b>Ahadi ya zawadi bila kushiriki mashindano</div>
+<div class="item"><b>2. Link Fupi</b>bit.ly, tinyurl, t.me - huficha link ya kweli</div>
+<div class="item"><b>3. Haraka Haraka</b>Shinikizo la muda mfupi - fanya sasa!</div>
+<div class="item"><b>4. Namba ya Kigeni</b>+86, +44 n.k kudai ni TCRA au Bank</div>
+<div class="item"><b>5. Ombi la Pesa</b>Tuma ada ndogo ili upate zawadi kubwa</div>
+<div class="item"><b>6. PIN / OTP</b>Kuomba password, PIN au code ya siri</div>
+<div class="item"><b>7. Sarufi Mbaya</b>Kiswahili / Kiingereza kibovu sana</div>
+<div class="item"><b>8. Kujifanya Bank</b>Kujifanya NMB, Tigo Pesa, CRDB</div>
+<div class="item"><b>9. Kazi Rahisi Mtandaoni</b>Like video upate 50,000 kwa siku</div>
+<div class="item"><b>10. Mapenzi ya Ghafla</b>Mpenzi mtandaoni ghafla anaomba pesa</div>
+</div>
+</div>
+<p style="text-align:center;color:#5a6a8a;margin-top:20px;font-size:12px">PembaShield V3 • Imetengenezwa kwa ajili ya usalama wa Wazanzibari • Chake Chake</p>
+</div>
+<script>
+let lang='sw';
+const tr={
+sw:{t1:"Kinga ya Utapeli kwa Wazanzibari",t2:"Bandika ujumbe wa SMS au link hapa kuchunguza usalama wake",t3:"CHUNGUZA SASA",t4:"Dalili 10 za Utapeli Zanzibar",safe:"SALAMA ✅",warn:"TUHUMA ⚠️",danger:"HATARI KUBWA 🚨",ph:"Mfano: Hongera umechaguliwa! Bonyeza bit.ly..."},
+en:{t1:"Scam Protection for Zanzibaris",t2:"Paste SMS or link here to check its safety",t3:"CHECK NOW",t4:"10 Scam Signs in Zanzibar",safe:"SAFE ✅",warn:"SUSPICIOUS ⚠️",danger:"HIGH DANGER 🚨",ph:"Example: Congratulations you won! Click bit.ly..."}
+};
+function setLang(l){
+lang=l;
+document.getElementById('b-sw').className=l=='sw'?'btn active':'btn';
+document.getElementById('b-en').className=l=='en'?'btn active':'btn';
+let t=tr[l];
+for(let k in t){let e=document.getElementById(k);if(e&&k!='ph')e.innerText=t[k];}
+document.getElementById('msg').placeholder=t.ph;
+document.documentElement.lang=l;
+}
+function check(){
+let v=document.getElementById('msg').value.toLowerCase().trim();
+let r=document.getElementById('res');
+if(!v){r.innerHTML="";return;}
+let officialDomains=["nmb.co.tz","crdb.co.tz","nbc.co.tz","tz.go.tz","tigo.co.tz","vodacom.co.tz","airtel.co.tz","ttcl.co.tz"];
+let hasOfficial=officialDomains.some(d=>v.includes(d));
+let hasShortLink=v.includes("bit.ly")||v.includes("tinyurl")||v.includes("t.me")||v.includes("cutt.ly");
+let hasScamWords=["hongera","umechaguliwa","umeshinda","zawadi","haraka haraka","tuma ada","lipa sasa","pin yako","otp","password yako","fungua akaunti"].some(k=>v.includes(k));
+let score=0;
+if(hasShortLink)score+=2;
+if(hasScamWords)score+=2;
+if(v.includes("tuma")&&v.includes("pesa"))score++;
+if(v.includes("like")&&v.includes("video"))score++;
+
+if(hasOfficial &&!hasShortLink && score<2){
+r.innerHTML='<span class="safe">'+tr[lang].safe+'</span><br><small>'+(lang=='sw'?'Domain rasmi ya Tanzania - Inaonekana salama':'Official Tanzania domain - Looks safe')+'</small>';return;
+}
+if(score>=3||(hasShortLink&&hasScamWords)){
+r.innerHTML='<span class="danger">'+tr[lang].danger+'</span><br><small>'+(lang=='sw'?'Dalili '+(score+2)+' za utapeli zimepatikana. USIBONYEZE! Futa ujumbe.':' '+(score+2)+' scam signs detected. DO NOT CLICK! Delete message.')+'</small>';
+}else if(score>=1||hasShortLink){
+r.innerHTML='<span class="warn">'+tr[lang].warn+'</span><br><small>'+(lang=='sw'?'Tuhuma - Chunguza zaidi kabla ya kubonyeza':'Suspicious - Verify before clicking')+'</small>';
+}else{
+r.innerHTML='<span class="safe">'+tr[lang].safe+'</span><br><small>'+(lang=='sw'?'Hakuna dalili kubwa za utapeli':'No major scam signs')+'</small>';
+}
+}
+setLang('sw');
+</script>
+</body>
+</html>
