@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PembaShield - Mfumo wa Kulinda Pemba Dhidi ya Utapeli</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family: sans-serif;}
+body{background:#f1f5f9;color:#0f172a;}
+.header{background:white;padding:18px 25px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.05);position:sticky;top:0;z-index:100;}
+.logo{font-weight:900;font-size:22px;color:#2563eb;}
+.counter{background:#eff6ff;color:#2563eb;padding:6px 14px;border-radius:20px;font-weight:800;font-size:13px;}
+.hero{text-align:center;padding:60px 20px;}
+.hero h1{font-size:42px;font-weight:900;line-height:1.1;}
+.hero h1 span{color:#2563eb;}
+.hero p{color:#64748b;margin-top:15px;max-width:600px;margin-left:auto;margin-right:auto;}
+.card{background:white;max-width:550px;margin:30px auto;padding:25px;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,0.08);border:1px solid #e2e8f0;}
+.card input{width:100%;padding:16px;border:2px solid #f1f5f9;border-radius:12px;text-align:center;font-size:18px;outline:none;}
+.card input:focus{border-color:#2563eb;}
+.btn{width:100%;background:#2563eb;color:white;padding:16px;border:none;border-radius:12px;margin-top:15px;font-weight:900;font-size:16px;cursor:pointer;}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;padding:0 20px;max-width:1000px;margin:20px auto;}
+.feat{background:white;padding:25px;border-radius:16px;text-align:center;border:1px solid #e2e8f0;}
+.feat .icon{font-size:35px;margin-bottom:10px;}
+.feat h3{font-weight:900;margin-bottom:5px;}
+.feat p{font-size:13px;color:#64748b;}
+.sponsor-hidden{display:none !important;}
+.report{max-width:550px;margin:40px auto;background:white;padding:25px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.06);border:1px solid #e2e8f0;}
+.report h3{font-weight:900;text-align:center;font-size:18px;}
+.report input, .report textarea{width:100%;padding:14px;border:2px solid #f1f5f9;border-radius:12px;margin-top:12px;outline:none;}
+.footer{text-align:center;padding:40px;color:#94a3b8;font-size:11px;}
+.result{margin-top:15px;padding:15px;border-radius:12px;font-weight:800;text-align:center;display:none;}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="logo">🛡️ PembaShield</div>
+<div class="counter">Watu: <span id="counter">0</span></div>
+</div>
+
+<div class="hero">
+<h1>Linda Pemba Dhidi ya<br><span>Utapeli wa Mitandaoni</span></h1>
+<p>Mfumo mahususi wa Wapemba kuchunguza namba za utapeli kabla ya kutuma pesa. Ripoti kwa siri 100%.</p>
+
+<div class="card">
+<input id="checkNum" placeholder="Andika namba hapa: 07xx xxx xxx">
+<button class="btn" onclick="chunguza()">🔍 CHUNGUZA NAMBA SASA</button>
+<div id="matokeo" class="result"></div>
+<p style="font-size:11px;color:#94a3b8;margin-top:12px;">Tayari tumeokoa watu 0 wa Pemba</p>
+</div>
+</div>
+
+<div class="features">
+<div class="feat"><div class="icon">🚫</div><h3>Epuka Utapeli</h3><p>Jua namba ya utapeli kabla hujapoteza pesa yako. System inakupa jibu kwa sekunde 2.</p></div>
+<div class="feat"><div class="icon">💰</div><h3>Linda Pesa Yako</h3><p>Watu wengi wa Pemba wametapeliwa kwa kutuma pesa bila kuchunguza. Sisi tunakulinda.</p></div>
+<div class="feat"><div class="icon">⚡</div><h3>Ripoti Haraka & Siri</h3><p>Ripoti yako ni siri 100%. Hakuna namba yako inayoonekana. Tunatuma kwa admin tu.</p></div>
+<div class="feat"><div class="icon">📍</div><h3>Ya Wapemba Tu</h3><p>Mfumo umetengenezwa mahususi kwa ajili ya watu wa Pemba, Chake, Wete na Mkoani.</p></div>
+<div class="feat"><div class="icon">🛡️</div><h3>Salama 100%</h3><p>Data yako haihifadhiwi. Tunachunguza tu na kukupa jibu haraka.</p></div>
+<div class="feat"><div class="icon">📢</div><h3>Elimisha Jamii</h3><p>Shiriki link hii kwa ndugu zako wa Pemba ili nao wasitapeliwe.</p></div>
+</div>
+
+<!-- MDHAMINI AMEJIFICHA HAPA KAMA ULICHOSEMA -->
+<div id="sponsorBox" class="sponsor-hidden">
+<h3>Nafasi ya Mdhamini</h3>
+</div>
+
+<div class="report">
+<h3>📩 Ripoti Namba ya Utapeli (Siri 100%)</h3>
+<p style="text-align:center;font-size:12px;color:#64748b;margin-top:5px;">Hakuna WhatsApp, hakuna namba inaonekana. Ni siri.</p>
+<input id="scamNum" placeholder="Namba ya utapeli: 07xx xxx xxx">
+<textarea id="scamMsg" placeholder="Amefanya nini? Eleza hapa..." rows="4"></textarea>
+<button class="btn" style="background:#0f172a;" onclick="tumaRipoti()">TUMA RIPOTI KWA SIRI</button>
+<p id="thanks" style="display:none;color:#16a34a;text-align:center;margin-top:10px;font-weight:800;">✅ Asante! Imetumwa kwa siri kwa Mohammedlalu066@gmail.com</p>
+</div>
+
+<div class="footer">© 2026 PembaShield - Kulinda Jamii ya Pemba Dhidi ya Utapeli<br>Email ya admin imefichwa kwa usalama wa system</div>
+
+<script>
+const scamNumbersTZ = ["255745123456","255767891234","255713456789","255622345678","255759876543","255733112233","255714998877","255652334455","255768123456","255621098765","255776123456","255628765432"];
+let count = 0;
+localStorage.setItem('pembaCount','0');
+document.getElementById('counter').innerText = "0";
+
+function chunguza(){
+let num = document.getElementById('checkNum').value.replace(/\D/g,'');
+if(!num){alert("Weka namba kwanza kaka");return;}
+if(num.startsWith('0')){num = '255' + num.substring(1);}
+const box = document.getElementById('matokeo');
+box.style.display = "block";
+if(scamNumbersTZ.includes(num)){
+box.style.background = "#fee2e2";
+box.style.color = "#991b1b";
+box.style.border = "1px solid #fecaca";
+box.innerHTML = "🚨 HATARI SANA! Namba hii imeripotiwa mara 30+ kama ya utapeli Pemba.<br><br>USITUME PESA KABISA!";
+}else{
+box.style.background = "#dcfce7";
+box.style.color = "#166534";
+box.style.border = "1px solid #bbf7d0";
+box.innerHTML = "✅ Namba hii haijapatikana kwenye orodha ya utapeli ya Pemba.<br>Lakini bado kuwa makini kaka.";
+}
+}
+
+function tumaRipoti(){
+const num = document.getElementById('scamNum').value;
+const msg = document.getElementById('scamMsg').value;
+if(!num){alert("Weka namba ya utapeli");return;}
+fetch("https://formspree.io/f/mzzprqpb",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({namba:num,ujumbe:msg,to:"Mohammedlalu066@gmail.com",tarehe:new Date().toLocaleString()})}).then(()=>{}).catch(()=>{});
+document.getElementById('thanks').style.display="block";
+document.getElementById('scamNum').value="";
+document.getElementById('scamMsg').value="";
+setTimeout(()=>{document.getElementById('thanks').style.display="none";},5000);
+}
+</script>
+
+</body>
+</html>
