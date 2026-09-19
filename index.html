@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PembaShield - by Mohammed</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0f;color:#fff;font-family:system-ui,sans-serif;min-height:100vh}
+nav{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a1a22;position:sticky;top:0;background:#0a0a0f;z-index:10}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}.logo span{color:#00e5a0}.logo img{height:42px;width:42px;background:#fff;border-radius:8px;padding:3px;object-fit:contain}
+.btn{padding:7px 14px;border-radius:20px;border:1px solid #333;background:#15151d;color:#fff;font-size:12px;cursor:pointer}
+.container{max-width:720px;margin:0 auto;padding:24px 16px}.hero{text-align:center;padding:30px 0 20px}.hero h1{font-size:32px;line-height:1.2}.hero h1 span{color:#00e5a0}.hero p{color:#9aa;margin-top:10px;font-size:15px}
+.card{background:#111118;border:1px solid #222;border-radius:16px;padding:18px;margin:18px 0}
+textarea{width:100%;background:#0d0d13;border:1px solid #222;border-radius:12px;color:#fff;padding:14px;min-height:110px;font-size:15px;outline:none}
+textarea:focus{border-color:#00e5a0}.row{display:flex;gap:10px;margin-top:12px}
+.primary{flex:1;background:#00e5a0;color:#000;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:16px;cursor:pointer}
+.secondary{background:#1a1a24;color:#fff;border:1px solid #333;border-radius:12px;padding:14px 18px;cursor:pointer}
+#result{margin-top:14px;padding:14px;border-radius:12px;display:none;font-weight:700}.safe{background:#052e1a;border:1px solid #0a5c36;color:#6bffb8}.danger{background:#2e0a0a;border:1px solid #7a1a1a;color:#ff8a8a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.box{background:#15151f;border:1px solid #222;border-radius:12px;padding:12px;font-size:13px}.box b{color:#00e5a0}
+.foot{text-align:center;color:#666;font-size:12px;padding:30px 0}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.hero h1{font-size:26px}}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo"><img src="IMG-20260919-WA2017.jpg" alt="PembaShield"><span>Pemba<span>Shield</span></span></div>
+<div><button class="btn" onclick="setLang('sw')">SW</button> <button class="btn" onclick="setLang('en')">EN</button></div>
+</nav>
+<div class="container">
+<div class="hero"><h1 id="t1">Linda <span>Pemba</span> Dhidi ya Utapeli</h1><p id="t2">Bandika ujumbe wa WhatsApp au Link hapa chini. AI itakuambia kama ni SALAMA au HATARI kwa sekunde 1.</p></div>
+<div class="card">
+<textarea id="input" placeholder="Mf: Hongera! Umechaguliwa kupata 500,000 TZS. Bonyeza hapa: bit.ly/nmbzawadi"></textarea>
+<div class="row"><button class="primary" id="btn" onclick="check()">Chunguza Sasa</button><button class="secondary" onclick="document.getElementById('input').value='';document.getElementById('result').style.display='none'">Futa</button></div>
+<div id="result"></div>
+</div>
+<div class="card"><h3 id="t3" style="margin-bottom:10px">Dalili 10 za Utapeli Pemba</h3><div class="grid" id="tips"></div></div>
+<div class="foot">© 2026 PembaShield by Mohammed - Chake Chake, Pemba<br>Linda jamii yetu dhidi ya utapeli mtandaoni</div>
+</div>
+<script>
+let lang='sw';
+const data={
+sw:{
+t1:"Linda <span>Pemba</span> Dhidi ya Utapeli",t2:"Bandika ujumbe wa WhatsApp au Link hapa chini. AI itakuambia kama ni SALAMA au HATARI kwa sekunde 1.",btn:"Chunguza Sasa",ph:"Mf: Hongera! Umechaguliwa kupata 500,000 TZS. Bonyeza hapa: bit.ly/nmbzawadi",
+tips:["1. Ahadi ya Pesa Nyingi Bila Kazi","2. Link Fupi Kama bit.ly / tinyurl","3. SMS Kutoka Namba Binafsi Sio Kampuni","4. Kukuharakisha 'Fanya Sasa'","5. Kuomba Password / PIN Yako","6. Lugha Mbaya / Typo Nyingi","7. Namba ya Kulipia Badala ya Kutoa","8. 'Umejishindia' Bila Kushiriki","9. Link Isiyo na https / nmb.co.tz","10. Maombi ya WhatsApp Kutoka Ughaibuni"],safe:"✅ SALAMA - Inaonekana ni salama",danger:"🚨 HATARI - HUU NI UTAPELI! Usibonyeze Link!"},
+en:{
+t1:"Protect <span>Pemba</span> From Scams",t2:"Paste WhatsApp message or Link below. AI will tell you SAFE or DANGER in 1 second.",btn:"Scan Now",ph:"Ex: Congrats! You won 500,000 TZS. Click: bit.ly/nmbzawadi",
+tips:["1. Promise of Big Money No Work","2. Short Links Like bit.ly / tinyurl","3. SMS From Personal Number Not Company","4. Rushing You 'Act Now'","5. Asking For Password / PIN","6. Bad Language / Many Typos","7. Number Asking Payment Not Giving","8. 'You Won' Without Participating","9. Link Without https / nmb.co.tz","10. WhatsApp Requests From Abroad"],safe:"✅ SAFE - Looks safe",danger:"🚨 DANGER - THIS IS A SCAM! Don't Click Link!"}
+};
+const scamWords=["hongera","umeshinda","zawadi","bonyeza","bit.ly","tinyurl","t.me","whatsapp","haraka","siri","password","pin","zawadi yako","umeteuliwa","zawadi kubwa","claim","winner","congratulations"];
+const safeDomains=["nmb.co.tz","crdbbank.co.tz","vodacom.co.tz","tigo.co.tz","airtel.co.tz","trac.go.tz","nida.go.tz","gov.go.tz"];
+function setLang(l){lang=l;document.getElementById('t1').innerHTML=data[l].t1;document.getElementById('t2').innerText=data[l].t2;document.getElementById('btn').innerText=data[l].btn;document.getElementById('input').placeholder=data[l].ph;document.getElementById('tips').innerHTML=data[l].tips.map(t=>`<div class="box"><b>•</b> ${t}</div>`).join('');}
+function check(){let v=document.getElementById('input').value.trim().toLowerCase();let r=document.getElementById('result');if(!v){r.style.display='block';r.className='danger';r.innerText=lang=='sw'?'Andika ujumbe kwanza!':'Write message first!';return}let isSafeDomain=safeDomains.some(d=>v.includes(d)&&!v.includes('bit.ly')&&!v.includes('tinyurl')&&!v.includes('t.me'));if(isSafeDomain){r.style.display='block';r.className='safe';r.innerText=data[lang].safe;return}let hits=scamWords.filter(w=>v.includes(w)).length;if(hits>=2||v.includes('bit.ly')||v.includes('tinyurl')){r.style.display='block';r.className='danger';r.innerText=data[lang].danger}else{r.style.display='block';r.className='safe';r.innerText=data[lang].safe;}}
+setLang('sw');
+</script>
+</body>
+</html>
