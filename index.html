@@ -3,54 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PembaShield - AI Scam Detector Zanzibar</title>
+<title>PembaShield v2 - Global</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',sans-serif;background:#0a192f;color:white;min-height:100vh}
-.hero{text-align:center;padding:30px 15px;background:linear-gradient(135deg,#0a192f,#112240)}
-.logo{font-size:70px;margin-bottom:10px}
-h1{font-size:32px;color:#00d4ff}
-.subtitle{color:#8892b0;margin-top:5px}
-.owner{color:#00d4ff;font-weight:bold;margin-top:10px}
-.container{max-width:600px;margin:0 auto;padding:15px}
-.card{background:white;color:#0a192f;border-radius:20px;padding:25px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
-.card h3{margin-bottom:15px;color:#0a192f}
-input{width:100%;padding:16px;border-radius:12px;border:2px solid #0a192f;font-size:16px;outline:none}
-input:focus{border-color:#00d4ff}
-button{background:#00d4ff;color:#0a192f;border:none;padding:16px;border-radius:12px;font-weight:bold;width:100%;font-size:18px;margin-top:12px;cursor:pointer}
-button:active{transform:scale(0.98)}
-.result{margin-top:15px;padding:16px;border-radius:12px;display:none;font-weight:bold;font-size:16px;line-height:1.5}
-.features{text-align:left}
-.features p{margin:8px 0;font-size:15px}
-.footer{text-align:center;padding:20px;color:#8892b0;font-size:13px}
-.badge{display:inline-block;background:#00d4ff;color:#0a192f;padding:5px 15px;border-radius:20px;font-size:12px;font-weight:bold;margin-top:10px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#0a1020;color:white;padding:15px}
+.container{max-width:500px;margin:0 auto}
+.header{text-align:center;padding:20px 0}
+.logo{width:80px;height:80px;background:linear-gradient(135deg,#2563eb,#00d4ff);border-radius:50%;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.lang-switch{display:flex;justify-content:center;gap:10px;margin:15px 0}
+.lang-btn{padding:8px 18px;border-radius:20px;border:1px solid #334155;background:#1e293b;color:#94a3b8;cursor:pointer;font-weight:600}
+.lang-btn.active{background:#2563eb;color:white}
+.card{background:#111a30;border:1px solid #1e2d4a;border-radius:16px;padding:18px;margin-bottom:12px}
+textarea{width:100%;background:#0a1020;border:1px solid #1e2d4a;border-radius:10px;padding:12px;color:white;min-height:100px}
+.btn{width:100%;padding:13px;background:#2563eb;border:none;border-radius:10px;color:white;font-weight:700;margin-top:12px}
+.ex-btn{background:#1e293b;border:1px solid #334155;padding:5px 8px;border-radius:6px;font-size:11px;color:#cbd5e1;margin:3px}
+.result{margin-top:15px;display:none}
+.result.show{display:block}
+.score{font-size:38px;font-weight:700;text-align:center}
+.status{text-align:center;padding:7px;border-radius:7px;font-weight:600;margin:8px 0}
+.footer{text-align:center;color:#475569;font-size:11px;margin-top:20px}
 </style>
 </head>
 <body>
-<div class="hero">
+<div class="container">
+<div class="header">
 <div class="logo">🛡️</div>
 <h1>PembaShield</h1>
-<p class="subtitle">AI Scam Detector - Kulinda Wazanzibari</p>
-<p class="owner">by Lalu077 - Kijana wa Pemba</p>
-<div class="badge">VERSION 1.0 - LIVE</div>
+<p style="color:#94a3b8;font-size:13px">AI Scam Detector - Kulinda Wazanzibari</p>
+<div style="background:#1e293b;padding:4px 10px;border-radius:20px;font-size:10px;margin-top:8px;display:inline-block;color:#60a5fa">by Lalu077 | v2.0 GLOBAL</div>
 </div>
-
-<div class="container">
+<div class="lang-switch">
+<button class="lang-btn active" onclick="setLang('sw',this)">🇹🇿 SW</button>
+<button class="lang-btn" onclick="setLang('en',this)">🇺🇸 EN</button>
+</div>
 <div class="card">
-<h3>🔍 Chunguza Link ya Washiwashi</h3>
-<input id="linkInput" type="text" placeholder="Bandika link hapa mf: https://tigo-pesa-bonus.tk">
-<button onclick="checkLink()">CHUNGUZA SASA 🔎</button>
-<div id="result" class="result"></div>
+<label id="label1" style="font-size:12px;color:#94a3b8;display:block;margin-bottom:6px">Bandika ujumbe wa kutilia shaka:</label>
+<textarea id="input" placeholder="Mfano: Hongera! Umechaguliwa TZS 500,000 http://tigopesa-bonus.tk"></textarea>
+<div style="margin-top:8px">
+<button class="ex-btn" onclick="setEx(0)">Tigo Pesa Uongo</button>
+<button class="ex-btn" onclick="setEx(1)">Link Washukiwa</button>
+<button class="ex-btn" onclick="setEx(2)">Ujumbe Salama</button>
 </div>
-
-<div class="card features">
-<h3>🚨 Dalili 10 za Ulaghai Zanzibar:</h3>
-<p>❌ 1. Umechaguliwa mshindi Tigo bila droo</p>
-<p>❌ 2. Link inayoishia .tk, .ml, .buzz, .gq</p>
-<p>❌ 3. Inaomba PIN yako ya Tigo Pesa</p>
-<p>❌ 4. Inasema "Tuma kwa magroup 10"</p>
-<p>❌ 5. Kiswahili kibovu + haraka haraka</p>
-<p>❌ 6. Zawadi kubwa bure (iPhone, Milioni)</p>
-<p>❌ 7. Link fupi bit.ly isiyoeleweka</p>
-<p>❌ 8. Inaomba usajili wa haraka</p>
-<p>❌ 9. Inat
+<button class="btn" onclick="analyze()" id="btn">🔍 CHUNGUZA SASA</button>
+<div id="result" class="result">
+<div class="score" id="score">0%</div>
+<div class="status" id="status"></div>
+<div id="reasons" style="background:#0a1020;border-radius:10px;padding:12px;margin-top:10px;font-size:12px"></div>
+</div>
+</div>
+<div class="card" style="font-size:11px;color:#94a3b8;line-height:1.7">
+<b style="color:white" id="t">🛡️ Dalili 10 za Ulaghai:</b><br>
+1. Ahadi ya pesa nyingi bila kazi<br>
+2. Link.tk,.ml,.buzz,.gq<br>
+3. "Tuma kwa magroup 10"<br>
+4. "Haraka! Muda unaisha"<br>
+5. Kuomba password / NIDA<br>
+6. Kiswahili kibaya<br>
+7. Namba ya kimataifa ya ajabu<br>
+8. Haina https<br>
+9. Jina la kampuni limekosewa<br>
+10. "Lipa 2000 upate 500k" - Kulipia kidogo ili upate nyingi
+</div>
+<div class="footer">PembaShield v2.0 - Chake Chake, Pemba 🌍</div>
+</div>
+<script>
+let lang='sw';
+const exSW=["Hongera! Umechaguliwa TZS 500,000 http://tigopesa-bonus.tk","Akaunti yako itafungwa http://tigo-verify.buzz","Habari kesho tunakutana sokoni saa 2"];
+const exEN=["Congrats! You won $5000 http://paypal-bonus.tk","Your account will be closed http://secure-verify.buzz","Hi let's meet tomorrow at market 8am"];
+function setLang(l,el){lang=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');document.getElementById('label1').innerText=l=='sw'?'Bandika ujumbe wa kutilia shaka:':'Paste suspicious message:';document.getElementById('btn').innerText=l=='sw'?'🔍 CHUNGUZA SASA':'🔍 ANALYZE NOW';}
+function setEx(i){document.getElementById('input').value=lang=='sw'?exSW[i]:exEN[i];}
+function analyze(){
+let t=document.getElementById('input').value.toLowerCase();if(!t)return;let s=0,r=[];
+if(t.match(/hongera|congrats|winner|500,000|5000|bonus/)){s+=30;r.push(lang=='sw'?'Ahadi ya pesa nyingi':'Big money promise');}
+if(t.match(/\.tk|\.ml|\.buzz|\.gq|\.cf/)){s+=25;r.push(lang=='sw'?'Link ya bure ya utapeli':'Free scam domain');}
+if(t.match(/tuma kwa|share|forward|magroup/)){s+=15;r.push(lang=='sw'?'Inakuomba usambaze':'Asks to forward');}
+if(t.match(/password|nida|pin|verify|thibitisha/)){s+=20;r.push(lang=='sw'?'Inaomba password/NIDA':'Asks personal data');}
+if(t.match(/lipa|pay|2000/)){s+=15;r.push(lang=='sw'?'Lipa kidogo upate nyingi':'Pay small to get big');}
+s=Math.min(s,92);if(s<15)s=7;
+document.getElementById('result').classList.add('show');
+document.getElementById('score').innerText=s+'%';
+let st=document.getElementById('status');
+if(s>=70){st.innerText=s>0&&lang=='sw'?'🚨 HATARI - ULAGHAI!':'🚨 SCAM!';st.style.background='rgba(239,68,68,0.2)';st.style.color='#ef4444';document.getElementById('score').style.color='#ef4444';}
+else if(s>=40){st.innerText=lang=='sw'?'⚠️ TUMAKINI':'⚠️ SUSPICIOUS';st.style.background='rgba(245,158,11,0.2)';st.style.color='#f59e0b';document.getElementById('score').style.color='#f59e0b';}
+else{st.innerText=lang=='sw'?'✅ SALAMA':'✅ SAFE';st.style.background='rgba(34,197,94,0.2)';st.style.color='#22c55e';document.getElementById('score').style.color='#22c55e';}
+document.getElementById('reasons').innerHTML=r.length?r.map((x,i)=> (i+1)+'. '+x).join('<br>'):(lang=='sw'?'Hakuna dalili mbaya':'No scam signs');
+}
+</script>
+</body>
+</html>
