@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PembaShield - Chake Chake</title>
+<style>
+body{margin:0;background:#0a1020;color:#fff;font-family:sans-serif;padding:15px}
+.box{max-width:600px;margin:auto}
+.top{text-align:center;padding:15px}
+.lang{display:flex;justify-content:center;gap:8px;margin:15px 0}
+.lang button{padding:8px 16px;border-radius:20px;border:1px solid #333;background:#1e293b;color:#fff;cursor:pointer}
+.lang button.on{background:#2563eb}
+.card{background:#111a30;border:1px solid #222;padding:16px;border-radius:12px;margin:10px 0}
+textarea{width:100%;background:#0a1020;border:1px solid #333;color:#fff;padding:10px;border-radius:8px}
+.btn{width:100%;background:#0ea5e9;border:0;padding:12px;border-radius:8px;font-weight:bold;margin-top:10px;cursor:pointer}
+.hide{display:none}
+.show{display:block;margin-top:10px;padding:10px;border-radius:8px;font-weight:bold}
+.red{background:#3f0a0a;border:1px solid red;color:#f99}
+.green{background:#0a2e16;border:1px solid green;color:#6f6}
+.yellow{background:#3f2a0a;border:1px solid orange;color:#fc6}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="top">
+<h2>🛡️ PembaShield</h2>
+<p id="sub" style="color:#888;font-size:12px">KINGA YA ULAGHAI ZANZIBAR</p>
+<div class="lang">
+<button id="b-sw" class="on" onclick="lang('sw')">🇹🇿 SW</button>
+<button id="b-en" onclick="lang('en')">🇺🇸 EN</button>
+</div>
+</div>
+
+<div class="card">
+<p id="t1">Bandika ujumbe wa WhatsApp/SMS</p>
+<textarea id="msg" rows="3" placeholder="Hongera umechaguliwa..."></textarea>
+<button class="btn" onclick="check()" id="t2">🔍 CHUNGUZA</button>
+<div id="res" class="hide"></div>
+</div>
+
+<div class="card">
+<p id="t3" style="font-weight:bold">Dalili 10 za Ulaghai:</p>
+<div id="list" style="font-size:14px;line-height:1.9;color:#ccc;margin-top:8px">
+1. Ahadi ya pesa haraka<br>
+2. Kuomba PIN ya M-Pesa<br>
+3. Link fupi bit.ly<br>
+4. Kukuharakisha<br>
+5. Namba binafsi kama kampuni<br>
+6. Kuomba pesa ndogo upate kubwa<br>
+7. Lugha mbovu<br>
+8. Kutishia akaunti kufungwa<br>
+9. Kuomba picha ya kitambulisho<br>
+10. Zawadi usiyoomba
+</div>
+</div>
+</div>
+
+<script>
+function lang(l){
+ localStorage.setItem('l',l);
+ document.getElementById('b-sw').className = l=='sw'?'on':'';
+ document.getElementById('b-en').className = l=='en'?'on':'';
+ if(l=='sw'){
+  document.getElementById('sub').innerText='KINGA YA ULAGHAI ZANZIBAR';
+  document.getElementById('t1').innerText='Bandika ujumbe wa WhatsApp/SMS';
+  document.getElementById('t2').innerText='🔍 CHUNGUZA';
+  document.getElementById('t3').innerText='Dalili 10 za Ulaghai:';
+  document.getElementById('list').innerHTML="1. Ahadi ya pesa haraka<br>2. Kuomba PIN ya M-Pesa<br>3. Link fupi bit.ly<br>4. Kukuharakisha<br>5. Namba binafsi kama kampuni<br>6. Kuomba pesa ndogo upate kubwa<br>7. Lugha mbovu<br>8. Kutishia akaunti kufungwa<br>9. Kuomba picha ya kitambulisho<br>10. Zawadi usiyoomba";
+ }else{
+  document.getElementById('sub').innerText='ZANZIBAR SCAM PROTECTION';
+  document.getElementById('t1').innerText='Paste WhatsApp/SMS message';
+  document.getElementById('t2').innerText='🔍 SCAN NOW';
+  document.getElementById('t3').innerText='10 Scam Signs:';
+  document.getElementById('list').innerHTML="1. Quick money promise<br>2. Asking M-Pesa PIN<br>3. Short link bit.ly<br>4. Urgency pressure<br>5. Personal number as company<br>6. Small fee for big reward<br>7. Poor language<br>8. Account closure threat<br>9. Asking ID photo<br>10. Prize you never applied";
+ }
+}
+function check(){
+ let t=document.getElementById('msg').value.toLowerCase();
+ let r=document.getElementById('res');
+ if(!t){return}
+ let s=0; ["hongera","pin","bit.ly","zawadi","500,000","urgent"].forEach(w=>{if(t.includes(w))s++});
+ r.className='show '+(s>=2?'red':s==1?'yellow':'green');
+ r.innerText=s>=2?'⚠️ HATARI - UTAPELI!':s==1?'⚠️ Inatia shaka':'✅ Inaonekana salama';
+}
+lang(localStorage.getItem('l')||'sw');
+</script>
+</body>
+</html>
