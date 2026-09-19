@@ -3,90 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PembaShield v2 - Global</title>
+<title>PembaShield v2.1 - Na Logo</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#0a1020;color:white;padding:15px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a1020;color:white;padding:15px;font-family:sans-serif}
 .container{max-width:500px;margin:0 auto}
 .header{text-align:center;padding:20px 0}
-.logo{width:80px;height:80px;background:linear-gradient(135deg,#2563eb,#00d4ff);border-radius:50%;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.logo-img{width:120px;height:120px;border-radius:50%;border:4px solid #00d2ff;box-shadow:0 0 25px rgba(0,210,255,0.6);object-fit:cover;margin-bottom:10px}
 .lang-switch{display:flex;justify-content:center;gap:10px;margin:15px 0}
-.lang-btn{padding:8px 18px;border-radius:20px;border:1px solid #334155;background:#1e293b;color:#94a3b8;cursor:pointer;font-weight:600}
-.lang-btn.active{background:#2563eb;color:white}
-.card{background:#111a30;border:1px solid #1e2d4a;border-radius:16px;padding:18px;margin-bottom:12px}
-textarea{width:100%;background:#0a1020;border:1px solid #1e2d4a;border-radius:10px;padding:12px;color:white;min-height:100px}
-.btn{width:100%;padding:13px;background:#2563eb;border:none;border-radius:10px;color:white;font-weight:700;margin-top:12px}
-.ex-btn{background:#1e293b;border:1px solid #334155;padding:5px 8px;border-radius:6px;font-size:11px;color:#cbd5e1;margin:3px}
-.result{margin-top:15px;display:none}
-.result.show{display:block}
-.score{font-size:38px;font-weight:700;text-align:center}
-.status{text-align:center;padding:7px;border-radius:7px;font-weight:600;margin:8px 0}
-.footer{text-align:center;color:#475569;font-size:11px;margin-top:20px}
+.lang-btn{padding:8px 18px;border-radius:20px;border:1px solid #00d2ff;background:transparent;color:white;cursor:pointer}
+.lang-btn.active{background:#2563eb;color:white;font-weight:bold}
+.card{background:#111a30;border:1px solid #1e293b;border-radius:15px;padding:20px;margin-top:10px}
+textarea{width:100%;background:#0a1020;border:1px solid #1e293b;color:white;padding:12px;border-radius:10px;height:100px}
+.btn{width:100%;padding:13px;background:linear-gradient(90deg,#2563eb,#00d2ff);border:none;border-radius:10px;color:white;font-weight:bold;margin-top:12px;cursor:pointer;font-size:16px}
+.ex-btn{background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:6px 12px;border-radius:20px;margin:5px;font-size:12px;cursor:pointer}
+.result{margin-top:15px;display:none;padding:15px;border-radius:10px;text-align:center}
+.safe{background:#052e16;border:1px solid #15803d}
+.danger{background:#450a0a;border:1px solid #dc2626}
+h1{font-size:28px;background:linear-gradient(90deg,#00d2ff,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="header">
-<div class="logo">🛡️</div>
+<img src="IMG-20260919-WA2017.jpg" class="logo-img">
 <h1>PembaShield</h1>
-<p style="color:#94a3b8;font-size:13px">AI Scam Detector - Kulinda Wazanzibari</p>
-<div style="background:#1e293b;padding:4px 10px;border-radius:20px;font-size:10px;margin-top:8px;display:inline-block;color:#60a5fa">by Lalu077 | v2.0 GLOBAL</div>
-</div>
+<p style="color:#94a3b8;font-size:14px">AI Scam Detector kwa Wazanzibari</p>
 <div class="lang-switch">
-<button class="lang-btn active" onclick="setLang('sw',this)">🇹🇿 SW</button>
-<button class="lang-btn" onclick="setLang('en',this)">🇺🇸 EN</button>
+<button class="lang-btn active" onclick="setLang('sw')">🇹🇿 SW</button>
+<button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+</div>
 </div>
 <div class="card">
-<label id="label1" style="font-size:12px;color:#94a3b8;display:block;margin-bottom:6px">Bandika ujumbe wa kutilia shaka:</label>
-<textarea id="input" placeholder="Mfano: Hongera! Umechaguliwa TZS 500,000 http://tigopesa-bonus.tk"></textarea>
-<div style="margin-top:8px">
-<button class="ex-btn" onclick="setEx(0)">Tigo Pesa Uongo</button>
-<button class="ex-btn" onclick="setEx(1)">Link Washukiwa</button>
-<button class="ex-btn" onclick="setEx(2)">Ujumbe Salama</button>
+<textarea id="msg" placeholder="Bandika ujumbe wa kutatia hapa..."></textarea>
+<div style="margin-top:10px">
+<button class="ex-btn" onclick="setEx('Ndugu umeshinda 500k Tigo Pesa tuma 2000 uchukue')">Tigo 500k</button>
+<button class="ex-btn" onclick="setEx('Mambo vipi?')">Salama</button>
+<button class="ex-btn" onclick="setEx('Lipa 2000 upate 500k - Kulipia kidogo ili upate nyingi')">Jaribio 10</button>
 </div>
-<button class="btn" onclick="analyze()" id="btn">🔍 CHUNGUZA SASA</button>
-<div id="result" class="result">
-<div class="score" id="score">0%</div>
-<div class="status" id="status"></div>
-<div id="reasons" style="background:#0a1020;border-radius:10px;padding:12px;margin-top:10px;font-size:12px"></div>
+<button class="btn" onclick="check()">🛡️ CHUNGUZA UJUMBE</button>
+<div id="res" class="result"></div>
 </div>
-</div>
-<div class="card" style="font-size:11px;color:#94a3b8;line-height:1.7">
-<b style="color:white" id="t">🛡️ Dalili 10 za Ulaghai:</b><br>
-1. Ahadi ya pesa nyingi bila kazi<br>
-2. Link.tk,.ml,.buzz,.gq<br>
-3. "Tuma kwa magroup 10"<br>
-4. "Haraka! Muda unaisha"<br>
-5. Kuomba password / NIDA<br>
-6. Kiswahili kibaya<br>
-7. Namba ya kimataifa ya ajabu<br>
-8. Haina https<br>
-9. Jina la kampuni limekosewa<br>
-10. "Lipa 2000 upate 500k" - Kulipia kidogo ili upate nyingi
-</div>
-<div class="footer">PembaShield v2.0 - Chake Chake, Pemba 🌍</div>
 </div>
 <script>
 let lang='sw';
-const exSW=["Hongera! Umechaguliwa TZS 500,000 http://tigopesa-bonus.tk","Akaunti yako itafungwa http://tigo-verify.buzz","Habari kesho tunakutana sokoni saa 2"];
-const exEN=["Congrats! You won $5000 http://paypal-bonus.tk","Your account will be closed http://secure-verify.buzz","Hi let's meet tomorrow at market 8am"];
-function setLang(l,el){lang=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');document.getElementById('label1').innerText=l=='sw'?'Bandika ujumbe wa kutilia shaka:':'Paste suspicious message:';document.getElementById('btn').innerText=l=='sw'?'🔍 CHUNGUZA SASA':'🔍 ANALYZE NOW';}
-function setEx(i){document.getElementById('input').value=lang=='sw'?exSW[i]:exEN[i];}
-function analyze(){
-let t=document.getElementById('input').value.toLowerCase();if(!t)return;let s=0,r=[];
-if(t.match(/hongera|congrats|winner|500,000|5000|bonus/)){s+=30;r.push(lang=='sw'?'Ahadi ya pesa nyingi':'Big money promise');}
-if(t.match(/\.tk|\.ml|\.buzz|\.gq|\.cf/)){s+=25;r.push(lang=='sw'?'Link ya bure ya utapeli':'Free scam domain');}
-if(t.match(/tuma kwa|share|forward|magroup/)){s+=15;r.push(lang=='sw'?'Inakuomba usambaze':'Asks to forward');}
-if(t.match(/password|nida|pin|verify|thibitisha/)){s+=20;r.push(lang=='sw'?'Inaomba password/NIDA':'Asks personal data');}
-if(t.match(/lipa|pay|2000/)){s+=15;r.push(lang=='sw'?'Lipa kidogo upate nyingi':'Pay small to get big');}
-s=Math.min(s,92);if(s<15)s=7;
-document.getElementById('result').classList.add('show');
-document.getElementById('score').innerText=s+'%';
-let st=document.getElementById('status');
-if(s>=70){st.innerText=s>0&&lang=='sw'?'🚨 HATARI - ULAGHAI!':'🚨 SCAM!';st.style.background='rgba(239,68,68,0.2)';st.style.color='#ef4444';document.getElementById('score').style.color='#ef4444';}
-else if(s>=40){st.innerText=lang=='sw'?'⚠️ TUMAKINI':'⚠️ SUSPICIOUS';st.style.background='rgba(245,158,11,0.2)';st.style.color='#f59e0b';document.getElementById('score').style.color='#f59e0b';}
-else{st.innerText=lang=='sw'?'✅ SALAMA':'✅ SAFE';st.style.background='rgba(34,197,94,0.2)';st.style.color='#22c55e';document.getElementById('score').style.color='#22c55e';}
-document.getElementById('reasons').innerHTML=r.length?r.map((x,i)=> (i+1)+'. '+x).join('<br>'):(lang=='sw'?'Hakuna dalili mbaya':'No scam signs');
+function setLang(l){lang=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');}
+function setEx(t){document.getElementById('msg').value=t;}
+function check(){
+let m=document.getElementById('msg').value.toLowerCase();
+let r=document.getElementById('res');
+r.style.display='block';
+if(m.includes('500k')||m.includes('2000')||m.includes('shinda')||m.includes('zawadi')||m.includes('tuma')){
+r.className='result danger';r.innerHTML='🚨 <b>HATARI! UTAPELI!</b><br>Usitume pesa! Futa ujumbe!';
+}else if(m.trim()==''){r.className='result danger';r.innerHTML='Tafadhali andika ujumbe kwanza';}
+else{r.className='result safe';r.innerHTML='✅ <b>SALAMA</b><br>Ujumbe unaonekana salama';}
 }
 </script>
 </body>
