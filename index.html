@@ -3,24 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PembaShield v2.1 - Na Logo</title>
+<title>PembaShield v2.2 - Kamili</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a1020;color:white;padding:15px;font-family:sans-serif}
-.container{max-width:500px;margin:0 auto}
+body{background:#0a1020;color:white;padding:15px;font-family:sans-serif;line-height:1.6}
+.container{max-width:600px;margin:0 auto}
 .header{text-align:center;padding:20px 0}
-.logo-img{width:120px;height:120px;border-radius:50%;border:4px solid #00d2ff;box-shadow:0 0 25px rgba(0,210,255,0.6);object-fit:cover;margin-bottom:10px}
+.logo-img{width:130px;height:130px;border-radius:50%;border:4px solid #00d2ff;box-shadow:0 0 30px rgba(0,210,255,0.7);object-fit:cover;margin-bottom:10px}
 .lang-switch{display:flex;justify-content:center;gap:10px;margin:15px 0}
 .lang-btn{padding:8px 18px;border-radius:20px;border:1px solid #00d2ff;background:transparent;color:white;cursor:pointer}
-.lang-btn.active{background:#2563eb;color:white;font-weight:bold}
-.card{background:#111a30;border:1px solid #1e293b;border-radius:15px;padding:20px;margin-top:10px}
-textarea{width:100%;background:#0a1020;border:1px solid #1e293b;color:white;padding:12px;border-radius:10px;height:100px}
+.lang-btn.active{background:#2563eb;font-weight:bold}
+.card{background:#111a30;border:1px solid #1e293b;border-radius:15px;padding:20px;margin-top:15px}
+textarea{width:100%;background:#0a1020;border:1px solid #334155;color:white;padding:12px;border-radius:10px;height:100px;font-size:14px}
 .btn{width:100%;padding:13px;background:linear-gradient(90deg,#2563eb,#00d2ff);border:none;border-radius:10px;color:white;font-weight:bold;margin-top:12px;cursor:pointer;font-size:16px}
 .ex-btn{background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:6px 12px;border-radius:20px;margin:5px;font-size:12px;cursor:pointer}
-.result{margin-top:15px;display:none;padding:15px;border-radius:10px;text-align:center}
-.safe{background:#052e16;border:1px solid #15803d}
-.danger{background:#450a0a;border:1px solid #dc2626}
-h1{font-size:28px;background:linear-gradient(90deg,#00d2ff,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.result{margin-top:15px;display:none;padding:15px;border-radius:10px;text-align:center;font-weight:bold}
+.safe{background:#052e16;border:1px solid #15803d;color:#bbf7d0}
+.danger{background:#450a0a;border:1px solid #dc2626;color:#fecaca}
+h1{font-size:30px;background:linear-gradient(90deg,#00d2ff,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h2{color:#00d2ff;margin-bottom:10px;font-size:18px}
+ul{padding-left:20px;color:#cbd5e1;font-size:14px}
+ul li{margin-bottom:8px}
+.section-title{background:#111a30;padding:10px;border-radius:10px;border-left:4px solid #00d2ff;margin-top:20px}
 </style>
 </head>
 <body>
@@ -34,30 +38,62 @@ h1{font-size:28px;background:linear-gradient(90deg,#00d2ff,#2563eb);-webkit-back
 <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
 </div>
 </div>
+
 <div class="card">
+<h2 id="t1">🛡️ Chunguza Ujumbe</h2>
 <textarea id="msg" placeholder="Bandika ujumbe wa kutatia hapa..."></textarea>
 <div style="margin-top:10px">
 <button class="ex-btn" onclick="setEx('Ndugu umeshinda 500k Tigo Pesa tuma 2000 uchukue')">Tigo 500k</button>
-<button class="ex-btn" onclick="setEx('Mambo vipi?')">Salama</button>
+<button class="ex-btn" onclick="setEx('Mambo vipi? Karibu chakula')">Salama</button>
 <button class="ex-btn" onclick="setEx('Lipa 2000 upate 500k - Kulipia kidogo ili upate nyingi')">Jaribio 10</button>
 </div>
 <button class="btn" onclick="check()">🛡️ CHUNGUZA UJUMBE</button>
 <div id="res" class="result"></div>
 </div>
+
+<div class="card">
+<div class="section-title"><h2>📋 Jinsi Inavyofanya Kazi</h2></div>
+<ul style="margin-top:10px">
+<li><b>1. Bandika Ujumbe:</b> Copy ujumbe uliotumiwa WhatsApp/SMS</li>
+<li><b>2. AI Inachunguza:</b> Mfumo wetu unaangalia maneno ya ulaghai kama "Tuma pesa", "Ushinde", "Haraka"</li>
+<li><b>3. Pata Jibu:</b> Utapata KIJANI (Salama) au NYEKUNDU (Hatari) papo hapo!</li>
+</ul>
+</div>
+
+<div class="card" style="border:1px solid #dc2626">
+<div class="section-title" style="border-left-color:#dc2626"><h2 style="color:#f87171">🚨 Dalili 10 za Ulaghai Zanzibar</h2></div>
+<ul style="margin-top:10px">
+<li><b>1. "Umeshhinda Zawadi":</b> Hujaingia droo yoyote lakini umeshinda 500k</li>
+<li><b>2. "Tuma Kidogo Upate Nyingi":</b> Tuma 2000 upate 500,000 - Hii ni mtego!</li>
+<li><b>3. "Haraka Kabla Haijaisha":</b> Wanakuwekea presha usifikiri</li>
+<li><b>4. Namba ya Siri:</b> "Nipe password yako ya Tigo Pesa / M-Pesa"</li>
+<li><b>5. Link ya Ajabu:</b> Bonyeza link hii ya kutia shaka</li>
+<li><b>6. Lugha ya Kutisha:</b> "Akaunti yako itafungwa leo!"</li>
+<li><b>7. Namba ya Kigeni:</b> +256, +234 wanadai ni Tigo Zanzibar</li>
+<li><b>8. Kazi Rahisi Mtandaoni:</b> "Lipa 50k uanze kazi ya ku-like video"</li>
+<li><b>9. Mapenzi ya Uongo:</b> Mzungu anakupenda baada ya siku 2 anaomba pesa</li>
+<li><b>10. Msaada wa Dharura:</b> "Mimi ni rafiki yako nimepata ajali nitumie pesa haraka"</li>
+</ul>
+<p style="margin-top:12px;background:#450a0a;padding:10px;border-radius:8px;font-size:13px">⚠️ <b>Kumbuka:</b> Tigo, Vodacom, Airtel HAWATOKUOMBA pesa ili upate zawadi. Ukiona dalili hizi, FUTA ujumbe mara moja!</p>
+</div>
+
+<div class="card">
+<p style="text-align:center;color:#64748b;font-size:12px">© 2026 PembaShield | Imetengenezwa na Lalu077 kutoka Chake Chake, Pemba 🌴<br>Version 2.2 - Na Logo Kamili</p>
+</div>
+
 </div>
 <script>
-let lang='sw';
-function setLang(l){lang=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');}
 function setEx(t){document.getElementById('msg').value=t;}
 function check(){
 let m=document.getElementById('msg').value.toLowerCase();
 let r=document.getElementById('res');
 r.style.display='block';
-if(m.includes('500k')||m.includes('2000')||m.includes('shinda')||m.includes('zawadi')||m.includes('tuma')){
-r.className='result danger';r.innerHTML='🚨 <b>HATARI! UTAPELI!</b><br>Usitume pesa! Futa ujumbe!';
+if(m.includes('500k')||m.includes('2000')||m.includes('zawadi')||m.includes('shinda')||m.includes('tuma')||m.includes('lipa')||m.includes('password')||m.includes('http')){
+r.className='result danger';r.innerHTML='🚨 <b>HATARI! HUU NI UTAPELI!</b><br>Usitume pesa wala kubonyeza link! Futa ujumbe huu haraka.';
 }else if(m.trim()==''){r.className='result danger';r.innerHTML='Tafadhali andika ujumbe kwanza';}
-else{r.className='result safe';r.innerHTML='✅ <b>SALAMA</b><br>Ujumbe unaonekana salama';}
+else{r.className='result safe';r.innerHTML='✅ <b>SALAMA</b><br>Ujumbe huu unaonekana salama. Lakini bado kuwa makini!';}
 }
+function setLang(l){alert('Lugha ya Kiingereza inakuja hivi karibuni! / English coming soon!');}
 </script>
 </body>
 </html>
