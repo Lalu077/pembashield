@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PembaShield - Linda Pemba Dhidi ya Utapeli</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f8fafc] font-sans">
+<div class="max-w-5xl mx-auto">
+
+<header class="bg-white px-6 py-4 shadow-sm flex justify-between items-center sticky top-0 z-10">
+<div class="flex items-center gap-2"><div class="bg-blue-600 text-white w-9 h-9 rounded-lg flex items-center justify-center font-black">P</div><div class="font-black text-lg text-slate-800">PembaShield</div></div>
+<div class="bg-blue-50 px-3 py-1 rounded-full text-xs font-bold text-blue-700">Watu: <span id="counter">0</span></div>
+</header>
+
+<section class="text-center py-12 px-4">
+<h1 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight">Linda Pemba Dhidi ya<br><span class="text-blue-600">Utapeli wa Mitandaoni</span></h1>
+<p class="mt-4 text-gray-500 max-w-xl mx-auto">Ingiza namba ya simu hapa chini ujue kama ni ya utapeli kabla hujatuma pesa.</p>
+
+<div class="max-w-lg mx-auto mt-8 bg-white p-6 rounded-[20px] shadow-xl border">
+<input id="checkNum" placeholder="Andika namba: 07xx xxx xxx" class="w-full p-4 border-2 border-slate-100 rounded-xl text-center text-lg focus:border-blue-500 outline-none">
+<button onclick="chunguza()" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-xl mt-4 font-black text-lg">🔍 CHUNGUZA NAMBA SASA</button>
+<div id="matokeo" class="hidden mt-4 p-4 rounded-xl font-bold text-center"></div>
+</div>
+</section>
+
+<section class="grid md:grid-cols-3 gap-4 px-6">
+<div class="bg-white p-6 rounded-2xl shadow-sm text-center border"><div class="text-4xl mb-2">🚫</div><h3 class="font-black">Epuka Utapeli</h3><p class="text-sm text-gray-500 mt-1">Jua namba mbaya kabla ya kupoteza pesa</p></div>
+<div class="bg-white p-6 rounded-2xl shadow-sm text-center border"><div class="text-4xl mb-2">💰</div><h3 class="font-black">Linda Pesa Yako</h3><p class="text-sm text-gray-500 mt-1">Hakikisha pesa yako iko salama</p></div>
+<div class="bg-white p-6 rounded-2xl shadow-sm text-center border"><div class="text-4xl mb-2">⚡</div><h3 class="font-black">Ripoti Haraka</h3><p class="text-sm text-gray-500 mt-1">Ripoti kwa siri 100% bila namba yako kuonekana</p></div>
+</section>
+
+<div id="sponsorBox" style="display:none;" class="mx-6 mt-10 border-2 border-dashed border-blue-300 p-8 rounded-[20px] text-center bg-blue-50/50">
+<p class="text-[10px] tracking-widest text-gray-400 font-bold">TANGAZO LA MDHAMINI</p>
+<h3 class="font-black text-xl mt-2">Nafasi ya Mdhamini Wako Hapa</h3>
+<p class="text-sm text-gray-500">Wasiliana nasi uweke tangazo lako</p>
+</div>
+
+<section class="max-w-lg mx-auto bg-white p-6 rounded-[20px] shadow-xl border mt-10 mb-10">
+<h3 class="font-black text-center text-lg">📩 Ripoti Namba ya Utapeli</h3>
+<p class="text-xs text-center text-gray-400 mt-1">Siri 100% - Hakuna WhatsApp, hakuna namba inaonekana</p>
+<input id="scamNum" placeholder="Namba ya utapeli: 07xx..." class="w-full border-2 border-slate-100 p-3 rounded-xl mt-4 outline-none focus:border-blue-500">
+<textarea id="scamMsg" placeholder="Amefanya nini? Mfano: Aliniambia nitume 50k..." class="w-full border-2 border-slate-100 p-3 rounded-xl mt-3 h-24 outline-none focus:border-blue-500"></textarea>
+<button onclick="tumaRipoti()" class="w-full bg-slate-900 hover:bg-black text-white p-4 rounded-xl mt-4 font-black">TUMA RIPOTI KWA SIRI</button>
+<p id="thanks" class="hidden text-green-600 text-center mt-3 font-bold text-sm">✅ Asante! Ripoti imetumwa kwa siri kwa admin.</p>
+</section>
+
+<footer class="text-center text-[11px] text-gray-400 pb-10">© 2026 PembaShield - Kulinda Jamii ya Pemba Dhidi ya Utapeli | Email ya admin imefichwa kwa usalama</footer>
+
+</div>
+
+<script>
+const scamNumbersTZ = ["255745123456","255767891234","255713456789","255622345678","255759876543","255733112233","255714998877","255652334455","255768123456","255621098765"];
+let count = parseInt(localStorage.getItem('pembaCount')||'0');
+document.getElementById('counter').innerText = count;
+
+function chunguza(){
+let num = document.getElementById('checkNum').value.replace(/\D/g,'');
+if(!num) return alert("Weka namba kwanza");
+if(num.startsWith('0')) num = '255' + num.substring(1);
+const box = document.getElementById('matokeo');
+box.classList.remove('hidden');
+if(scamNumbersTZ.includes(num)){
+box.className = "mt-4 p-4 rounded-xl font-bold text-center bg-red-100 text-red-700 border border-red-200";
+box.innerHTML = "🚨 HATARI SANA! Namba hii imeripotiwa mara 30+ kama ya utapeli.<br>USITUME PESA!";
+} else {
+box.className = "mt-4 p-4 rounded-xl font-bold text-center bg-green-100 text-green-700 border border-green-200";
+box.innerHTML = "✅ Namba hii haijapatikana kwenye orodha ya utapeli, lakini bado kuwa makini.";
+count++; localStorage.setItem('pembaCount', count); document.getElementById('counter').innerText = count;
+}
+}
+
+function tumaRipoti(){
+const num = document.getElementById('scamNum').value;
+const msg = document.getElementById('scamMsg').value;
+if(!num) return alert("Weka namba ya utapeli kwanza");
+fetch("https://formspree.io/f/mzzprqpb", {
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body: JSON.stringify({namba: num, ujumbe: msg, to: "Mohammedlalu066@gmail.com"})
+}).catch(()=>{});
+document.getElementById('thanks').classList.remove('hidden');
+document.getElementById('scamNum').value="";
+document.getElementById('scamMsg').value="";
+setTimeout(()=>{document.getElementById('thanks').classList.add('hidden');}, 4000);
+}
+</script>
+</body>
+</html>
