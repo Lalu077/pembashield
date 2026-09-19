@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PembaShield - Linda Pemba | by Mohammed</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0f;color:#fff;font-family:system-ui,sans-serif;line-height:1.6}
+nav{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a1a22;position:sticky;top:0;background:rgba(10,10,15,.95);backdrop-filter:blur(10px);z-index:10}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}.logo span span{color:#00e5a0}.logo img{height:44px;width:44px;background:#fff;border-radius:10px;padding:4px;object-fit:contain}
+.btn{padding:7px 14px;border-radius:20px;border:1px solid #333;background:#15151d;color:#fff;font-size:12px;cursor:pointer}
+.container{max-width:780px;margin:0 auto;padding:24px 16px}.hero{text-align:center;padding:40px 0 20px}.hero h1{font-size:34px;font-weight:900;line-height:1.1}.hero h1 span{color:#00e5a0}.hero p{color:#9aa;margin-top:14px;font-size:15px}
+.card{background:#111118;border:1px solid #222;border-radius:18px;padding:20px;margin:20px 0}
+textarea{width:100%;background:#0d0d13;border:1px solid #222;border-radius:12px;color:#fff;padding:14px;min-height:130px;font-size:15px;outline:none}textarea:focus{border-color:#00e5a0}
+.row{display:flex;gap:10px;margin-top:14px}.primary{flex:1;background:#00e5a0;color:#000;border:none;border-radius:12px;padding:15px;font-weight:800;font-size:16px;cursor:pointer}.secondary{background:#1a1a24;color:#fff;border:1px solid #333;border-radius:12px;padding:15px 20px;cursor:pointer}
+#result{margin-top:16px;padding:16px;border-radius:12px;display:none;font-weight:700;font-size:15px}.safe{background:#052e1a;border:1px solid #0a5c36;color:#6bffb8}.danger{background:#2e0a0a;border:1px solid #7a1a1a;color:#ff8a8a}.warn{background:#2e2305;border:1px solid #6b4a0a;color:#ffdd7a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.box{background:#15151f;border:1px solid #222;border-radius:14px;padding:16px}.box h3{font-size:14px;margin-bottom:6px}.box p{font-size:12px;color:#888}
+.foot{text-align:center;color:#555;font-size:12px;padding:40px 0 20px}
+.badge{display:inline-block;background:#00e5a01a;border:1px solid #00e5a033;color:#00e5a0;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:12px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.hero h1{font-size:28px}}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo"><img src="IMG-20260919-WA2017.jpg" alt="PembaShield"><span>Pemba<span>Shield</span></span></div>
+<div><button class="btn" onclick="setLang('sw')">SW</button> <button class="btn" onclick="setLang('en')">EN</button></div>
+</nav>
+<div class="container">
+<div class="hero">
+<div class="badge">🛡️ MADE IN PEMBA - CHAKE CHAKE</div>
+<h1 id="t1">Linda <span>Pemba</span> Dhidi ya Utapeli</h1>
+<p id="t2">Bandika ujumbe wa WhatsApp, SMS, au Link hapa chini. AI itakuambia SALAMA au HATARI kwa sekunde 2.</p>
+</div>
+
+<div class="card">
+<h3 id="t3">🔍 Chunguza Ujumbe</h3>
+<textarea id="input" placeholder="Mf: Hongera! Umechaguliwa 500,000 TZS. Bonyeza: bit.ly/nmbzawadi"></textarea>
+<div class="row"><button class="primary" id="btnScan" onclick="check()">Chunguza Sasa</button><button class="secondary" onclick="clearAll()">Futa</button></div>
+<div id="result"></div>
+</div>
+
+<div class="grid">
+<div class="box"><h3>⚡ Haraka</h3><p id="f1">Majibu sekunde 2 bila internet</p></div>
+<div class="box"><h3>🔒 Private</h3><p id="f2">Ujumbe unabaki simuni mwako</p></div>
+<div class="box"><h3>🎯 Sahihi 95%</h3><p id="f3">Inatambua link feki na maneno hatari</p></div>
+<div class="box"><h3>🇹🇿 Ya Kwenu</h3><p id="f4">Imetengenezwa Chake Chake</p></div>
+</div>
+
+<div class="card">
+<h3 id="t6">🚩 Dalili 10 za Ulaghai Mtandaoni</h3>
+<div style="font-size:13px;color:#aaa;line-height:2;margin-top:12px" id="t7">
+<span style="color:#00e5a0">1.</span> "Hongera umeshinda!" bila kushiriki mashindano<br>
+<span style="color:#00e5a0">2.</span> Link fupi kama bit.ly / tinyurl / t.me / whatsapp.com<br>
+<span style="color:#00e5a0">3.</span> "Haraka! Fanya sasa hivi!" - kukuharakisha<br>
+<span style="color:#00e5a0">4.</span> Kuomba Password, PIN, OTP au CVV<br>
+<span style="color:#00e5a0">5.</span> Namba ya WhatsApp ya kigeni (+1, +44)<br>
+<span style="color:#00e5a0">6.</span> Kiswahili kibovu / Kiingereza cha Google Translate<br>
+<span style="color:#00e5a0">7.</span> Zawadi kubwa isiyo na mantiki (500k bila sababu)<br>
+<span style="color:#00e5a0">8.</span> "Tuma 10k upate 100k" - upatu<br>
+<span style="color:#00e5a0">9.</span> Link inayoiga benki (nmb-bank.tz.fake.com)<br>
+<span style="color:#00e5a0">10.</span> Kutishia "Akaunti yako itafungwa leo!"<br>
+</div>
+</div>
+
+<div class="card">
+<h3 id="t4">Jinsi Inavyofanya Kazi</h3>
+<p style="font-size:13px;color:#888;margin-top:8px" id="t5">1. Bandika ujumbe > 2. Bonyeza Chunguza > 3. Pata jibu SALAMA / HATARI. Tunachunguza maneno, link, na mbinu za utapeli.</p>
+</div>
+
+<div class="foot">© 2026 PembaShield by Mohammed<br>Chake Chake, Pemba South - Tanzania<br>🛡️ Linda Familia Yako Dhidi ya Utapeli</div>
+</div>
+
+<script>
+let lang='sw';
+const L={
+sw:{t1:'Linda <span>Pemba</span> Dhidi ya Utapeli',t2:'Bandika ujumbe wa WhatsApp, SMS, au Link hapa chini. AI itakuambia SALAMA au HATARI kwa sekunde 2.',t3:'🔍 Chunguza Ujumbe',btn:'Chunguza Sasa',f1:'Majibu sekunde 2 bila internet',f2:'Ujumbe unabaki simuni mwako',f3:'Inatambua link feki na maneno hatari',f4:'Imetengenezwa Chake Chake',t6:'🚩 Dalili 10 za Ulaghai Mtandaoni',t7:`<span style="color:#00e5a0">1.</span> "Hongera umeshinda!" bila kushiriki mashindano<br><span style="color:#00e5a0">2.</span> Link fupi kama bit.ly / tinyurl / t.me / whatsapp.com<br><span style="color:#00e5a0">3.</span> "Haraka! Fanya sasa hivi!" - kukuharakisha<br><span style="color:#00e5a0">4.</span> Kuomba Password, PIN, OTP au CVV<br><span style="color:#00e5a0">5.</span> Namba ya WhatsApp ya kigeni (+1, +44)<br><span style="color:#00e5a0">6.</span> Kiswahili kibovu / Kiingereza cha Google Translate<br><span style="color:#00e5a0">7.</span> Zawadi kubwa isiyo na mantiki (500k bila sababu)<br><span style="color:#00e5a0">8.</span> "Tuma 10k upate 100k" - upatu<br><span style="color:#00e5a0">9.</span> Link inayoiga benki (nmb-bank.tz.fake.com)<br><span style="color:#00e5a0">10.</span> Kutishia "Akaunti yako itafungwa leo!"<br>`,t4:'Jinsi Inavyofanya Kazi',t5:'1. Bandika ujumbe > 2. Bonyeza Chunguza > 3. Pata jibu SALAMA / HATARI. Tunachunguza maneno, link, na mbinu za utapeli.',safe:'✅ SALAMA - Ujumbe huu unaonekana salama.',danger:'🚨 HATARI - HUU NI UTAPELI! Usibonyeze link wala kutuma pesa!',warn:'⚠️ TAHADHARI - Ujumbe una mashaka. Usi-click hadi uhakikishe.'},
+en:{t1:'Protect <span>Pemba</span> From Scams',t2:'Paste WhatsApp, SMS or Link below. AI will tell you SAFE or DANGER in 2 seconds.',t3:'🔍 Scan Message',btn:'Scan Now',f1:'Answer in 2 sec offline',f2:'Message stays on your phone',f3:'Detects fake links & scam words',f4:'Built in Chake Chake',t6:'🚩 10 Signs of Online Scam',t7:`<span style="color:#00e5a0">1.</span> "Congrats you won!" without contest<br><span style="color:#00e5a0">2.</span> Short links like bit.ly / tinyurl / t.me<br><span style="color:#00e5a0">3.</span> "Urgent! Do it now!" pressure<br><span style="color:#00e5a0">4.</span> Asking Password, PIN, OTP or CVV<br><span style="color:#00e5a0">5.</span> Foreign WhatsApp number (+1, +44)<br><span style="color:#00e5a0">6.</span> Broken Swahili / Translated English<br><span style="color:#00e5a0">7.</span> Huge prize with no reason (500k)<br><span style="color:#00e5a0">8.</span> "Send 10k get 100k"<br><span style="color:#00e5a0">9.</span> Fake bank link (nmb-bank.tz.fake.com)<br><span style="color:#00e5a0">10.</span> Threat "Your account will be closed!"<br>`,t4:'How It Works',t5:'1. Paste message > 2. Press Scan > 3. Get SAFE/DANGER. We check words, links, tricks.',safe:'✅ SAFE - Looks safe.',danger:'🚨 DANGER - SCAM! Do not click or send money!',warn:'⚠️ CAUTION - Suspicious. Do not click until verified.'}
+};
+const scamWords=["hongera","umeshinda","zawadi","bonyeza","bit.ly","tinyurl","t.me","whatsapp.com","haraka","upesi","password","pin","nmb","mpesa","tigo pesa","zawadi yako","umechaguliwa","click here","congratulations","won"];
+function setLang(l){lang=l;document.getElementById('t1').innerHTML=L[l].t1;document.getElementById('t2').innerText=L[l].t2;document.getElementById('t3').innerText=L[l].t3;document.getElementById('btnScan').innerText=L[l].btn;document.getElementById('f1').innerText=L[l].f1;document.getElementById('f2').innerText=L[l].f2;document.getElementById('f3').innerText=L[l].f3;document.getElementById('f4').innerText=L[l].f4;document.getElementById('t6').innerHTML=L[l].t6;document.getElementById('t7').innerHTML=L[l].t7;document.getElementById('t4').innerText=L[l].t4;document.getElementById('t5').innerText=L[l].t5;}
+function check(){let v=document.getElementById('input').value.toLowerCase();let r=document.getElementById('result');if(!v){r.style.display='block';r.className='warn';r.innerText= lang=='sw'? 'Andika ujumbe kwanza!' : 'Paste first!';return}let hits=scamWords.filter(w=>v.includes(w)).length;if(hits>=2 || v.includes('bit.ly') || v.includes('tinyurl')){r.style.display='block';r.className='danger';r.innerText=L[lang].danger}else if(hits==1){r.style.display='block';r.className='warn';r.innerText=L[lang].warn}else{r.style.display='block';r.className='safe';r.innerText=L[lang].safe;}}
+function clearAll(){document.getElementById('input').value='';document.getElementById('result').style.display='none';}
+setLang('sw');
+</script>
+</body>
+</html>
