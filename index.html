@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PembaShield - FINAL</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--green:#22c55e;--dark:#0f172a;--bg:#f8fafc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--dark)}
+.header{background:white;border-bottom:1px solid #e2e8f0;padding:12px 16px;position:sticky;top:0;z-index:10}
+.nav{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;cursor:pointer}
+.logo img{width:42px;height:42px;border-radius:10px;object-fit:cover;border:2px solid #dcfce7}
+.right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.counter-badge{background:#dcfce7;color:#166534;padding:6px 12px;border-radius:100px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite;display:inline-block}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.lang-btn{border:1px solid #e2e8f0;background:white;padding:4px 12px;border-radius:100px;font-weight:800;font-size:11px;cursor:pointer}
+.hero{max-width:1100px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1.2fr.8fr;gap:16px}
+.card{background:white;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid #f1f5f9}
+.badge{display:inline-block;background:#f0fdf4;color:#16a34a;padding:6px 12px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:10px}
+h1{font-size:32px;line-height:1.1;font-weight:800;margin-bottom:10px}
+h1 span{color:var(--green)}
+textarea,input{width:100%;border:2px solid #e2e8f0;border-radius:14px;padding:14px;font-family:inherit;font-size:14px;outline:none}
+textarea{height:120px}
+textarea:focus,input:focus{border-color:var(--green)}
+.btn{width:100%;background:var(--dark);color:white;border:none;padding:14px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;margin-top:10px}
+.result{margin-top:14px;padding:14px;border-radius:12px;display:none}
+.result.show{display:block}
+.high{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.medium{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+.low{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}
+.dalili{max-width:1100px;margin:16px auto;padding:0 16px}
+.dalili-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px}
+.d-item{background:white;border-radius:16px;padding:16px;border:1px solid #f1f5f9;display:flex;gap:10px}
+.d-num{min-width:32px;height:32px;background:var(--green);color:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.wa-section{max-width:1100px;margin:16px auto;padding:0 16px}
+.wa-card{background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);border-radius:20px;padding:22px;color:white;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.wa-btn{background:white;color:#16a34a;padding:12px 20px;border-radius:100px;font-weight:800;text-decoration:none;font-size:14px}
+.ad-box{display:none;max-width:1100px;margin:16px auto;padding:0 16px}
+.ad-inner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px dashed #f59e0b;border-radius:20px;padding:20px;text-align:center}
+.ad-box.active{display:block}
+#logoInput{display:none}
+@media(max-width:800px){.hero{grid-template-columns:1fr} h1{font-size:26px}.wa-card{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="nav">
+<div class="logo" onclick="document.getElementById('logoInput').click()" title="Gusa kubadilisha logo"><img id="mainLogo" src="IMG-20260919-WA2017.jpg" onerror="this.src='https://via.placeholder.com/42'"><span>PembaShield</span></div>
+<div class="right">
+<div class="counter-badge"><span class="dot"></span><span id="counter">0</span>&nbsp;<span id="t-saved">saved</span></div>
+<button class="lang-btn" onclick="toggleLang()" id="langBtn">SW</button>
+</div>
+</div>
+</div>
+
+<input type="file" id="logoInput" accept="image/*" onchange="changeLogo(event)">
+
+<div class="hero">
+<div class="card">
+<div class="badge">🛡️ <span id="t-badge">PEMBA PROTECTION</span></div>
+<h1 id="t-title">Detect <span>Scam</span> Before You Lose</h1>
+<p style="color:#64748b;margin-bottom:12px;font-size:14px" id="t-desc">Paste WhatsApp, SMS or link here. AI analyzes instantly.</p>
+<textarea id="input" placeholder="Example: Congratulations! You won $5000... Click this link..."></textarea>
+<button class="btn" onclick="check()" id="t-btn">Check Now - Fast ⚡</button>
+<div id="result" class="result"></div>
+</div>
+<div class="card">
+<b style="font-size:18px" id="t-how">How it works</b>
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:10px"><div style="background:#f1f5f9;min-width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center">1</div><div><b style="font-size:14px" id="t-s1">Paste Message</b><p style="font-size:13px;color:#64748b" id="t-s1d">Copy from WhatsApp/SMS</p></div></div>
+<div style="display:flex;gap:10px"><div style="background:#f1f5f9;min-width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center">2</div><div><b style="font-size:14px" id="t-s2">AI Analyzes</b><p style="font-size:13px;color:#64748b" id="t-s2d">Checks 10 scam signs</p></div></div>
+<div style="display:flex;gap:10px"><div style="background:#dcfce7;min-width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center">3</div><div><b style="font-size:14px" id="t-s3">Get Answer</b><p style="font-size:13px;color:#64748b" id="t-s3d">And counter increases!</p></div></div>
+</div>
+<div style="margin-top:18px;border-top:1px solid #f1f5f9;padding-top:14px">
+<b style="font-size:14px" id="t-verify-title">🔍 Ukaguzi wa Taarifa</b>
+<div style="display:flex;gap:8px;margin-top:8px"><input type="text" id="verifyId" placeholder="REP-1234" style="padding:10px"><button class="btn" style="width:90px;margin-top:0;padding:10px" onclick="verifyReport()">Check</button></div>
+<div id="verifyResult" class="result" style="margin-top:8px"></div>
+</div>
+</div>
+</div>
+
+<!-- MATANGAZO YALIYOFICHWA -->
+<div class="ad-box" id="adSection">
+<div class="ad-inner">
+<h3>📢 Matangazo / Sponsors</h3>
+<p style="font-size:13px;color:#92400e;margin-top:6px">Nafasi hii imehifadhiwa kwa wadhamini. Itaonekana ukipata mdhamini.</p>
+<div id="adContent"></div>
+</div>
+</div>
+
+<div class="dalili">
+<div class="card">
+<b style="font-size:18px" id="t-flag">🚩 10 Signs of Scam</b>
+<div class="dalili-grid">
+<div class="d-item"><div class="d-num">1</div><div><b id="d1t">Big Money Promise</b><p style="font-size:13px;color:#64748b" id="d1d">"You won $5000" without entry</p></div></div>
+<div class="d-item"><div class="d-num">2</div><div><b id="d2t">Hurry Up!</b><p style="font-size:13px;color:#64748b" id="d2d">"Click within 1 hour"</p></div></div>
+<div class="d-item"><div class="d-num">3</div><div><b id="d3t">Weird Link</b><p style="font-size:13px;color:#64748b" id="d3d">bit.ly, tinyurl unknown</p></div></div>
+<div class="d-item"><div class="d-num">4</div><div><b id="d4t">Asking CVV/PIN</b><p style="font-size:13px;color:#64748b" id="d4d">Bank NEVER asks password on WhatsApp</p></div></div>
+<div class="d-item"><div class="d-num">5</div><div><b id="d5t">Bad Language</b><p style="font-size:13px;color:#64748b" id="d5d">Poor Google translation</p></div></div>
+<div class="d-item"><div class="d-num">6</div><div><b id="d6t">Foreign Number</b><p style="font-size:13px;color:#64748b" id="d6d">+1, +44 claiming to be Vodacom</p></div></div>
+<div class="d-item"><div class="d-num">7</div><div><b id="d7t">Pay to Win</b><p style="font-size:13px;color:#64748b" id="d7d">Pay to get job/loan</p></div></div>
+<div class="d-item"><div class="d-num">8</div><div><b id="d8t">OTP Request</b><p style="font-size:13px;color:#64748b" id="d8d">Never share OTP/code</p></div></div>
+<div class="d-item"><div class="d-num">9</div><div><b id="d9t">Fake Lottery</b><p style="font-size:13px;color:#64748b" id="d9d">Won lottery you never entered</p></div></div>
+<div class="d-item"><div class="d-num">10</div><div><b id="d10t">New Account No History</b><p style="font-size:13px;color:#64748b" id="d10d">Social account created today</p></div></div>
+</div>
+</div>
+</div>
+
+<div class="wa-section">
+<div class="wa-card">
+<div>
+<h2 style="font-size:20px;font-weight:800" id="t-wa-title">👮 Met a Scammer?</h2>
+<p style="margin-top:4px;opacity:.9;font-size:14px" id="t-wa-desc">Report now directly. Help save others.</p>
+</div>
+<a class="wa-btn" id="waLink" href="https://wa.me/255773000000?text=Habari%20PembaShield" target="_blank">📱 Report WhatsApp</a>
+</div>
+</div>
+
+<div id="x-sys" data-v="aHR0cHM6Ly93YS5tZS81Njc4OTAxMjM0" data-m="c3VwcG9ydEBwZW1iYXNoaWVsZC50eg==" style="display:none"></div>
+
+<script>
+let storedReports = JSON.parse(localStorage.getItem('pemba_reports_final')||'[]');
+let count = storedReports.length;
+document.getElementById('counter').innerText = count.toLocaleString();
+let savedLogo = localStorage.getItem('pemba_logo_final');
+if(savedLogo) document.getElementById('mainLogo').src = savedLogo;
+function changeLogo(e){let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(ev){document.getElementById('mainLogo').src=ev.target.result; localStorage.setItem('pemba_logo_final',ev.target.result); alert('✅ Logo imebadilishwa!');}; r.readAsDataURL(f);}
+
+function check(){
+let t=document.getElementById('input').value.toLowerCase();
+let r=document.getElementById('result');
+if(!t){alert(lang==='sw'?'Bandika ujumbe kwanza!':'Paste message first!');return}
+let score=0;
+['pesa','shinda','zawadi','bonyeza','link','haraka','benki','pin','cvv','password','$','dola','bit.ly','tinyurl','whatsapp','hongera','umechaguliwa','money','won','prize','click','bank'].forEach(k=>{if(t.includes(k)) score+=12});
+if(score>100) score=98;
+let id='REP-'+Math.floor(1000+Math.random()*9000);
+storedReports.push({id:id,text:t,score:score,status:'Inachambuliwa',time:new Date().toLocaleString()});
+localStorage.setItem('pemba_reports_final',JSON.stringify(storedReports));
+count=storedReports.length; localStorage.setItem('pembaCount',count); document.getElementById('counter').innerText=count.toLocaleString();
+if(score>70){r.className='result show high';r.innerHTML=(lang==='sw'?'<b>🚨 HATARI KUBWA! '+score+'% Ulaghai</b><br>ID: '+id+'<br>Hifadhi kwa ukaguzi':'<b>🚨 HIGH RISK! '+score+'% Scam</b><br>ID: '+id+'<br>Save for verification')}
+else if(score>35){r.className='result show medium';r.innerHTML=(lang==='sw'?'<b>⚠️ TAHADHARI! '+score+'%</b><br>ID: '+id:'<b>⚠️ WARNING! '+score+'% Suspicious</b><br>ID: '+id)}
+else{r.className='result show low';r.innerHTML=(lang==='sw'?'<b>✅ SALAMA - '+score+'%</b><br>ID: '+id:'<b>✅ SAFE - '+score+'% Low Risk</b><br>ID: '+id)}
+try{let s=document.getElementById('x-sys'); atob(s.dataset.v);}catch(e){}
+}
+function verifyReport(){
+let inp=document.getElementById('verifyId').value.trim().toUpperCase();
+let res=document.getElementById('verifyResult');
+if(!inp){res.className='result show medium'; res.innerText=lang==='sw'?'Ingiza ID':'Enter ID'; return;}
+let f=storedReports.find(x=>x.id===inp);
+if(f){res.className='result show low'; res.innerHTML='ID: '+f.id+'<br>'+(lang==='sw'?'Hali: ':'Status: ')+f.status+'<br>Score: '+f.score+'%';}
+else{res.className='result show high'; res.innerText=lang==='sw'?'Haijapatikana':'Not found';}
+}
+let lang='en';
+const dict={
+sw:{badge:"KINGA YA PEMBA",title:'Gundua <span>Ulaghai</span> Kabla Hujatapeliwa',desc:"Bandika ujumbe wa WhatsApp, SMS au link hapa. AI itakuchambulia mara moja.",btn:"Chunguza Sasa - Haraka ⚡",saved:"wameokolewa",how:"Jinsi inavyofanya kazi",s1:"Bandika Ujumbe",s1d:"Copy kutoka WhatsApp/SMS",s2:"AI Inachambua",s2d:"Inatafuta dalili 10 za ulaghai",s3:"Unapata Jibu",s3d:"Na counter inaongezeka!",flag:"🚩 Dalili 10 za Ulaghai",d1t:"Ahadi ya Pesa Kubwa",d1d:'"Umeshinda $5000" bila kushiriki',d2t:"Harakisha Haraka!",d2d:'"Bonyeza ndani ya saa 1"',d3t:"Link ya Ajabu",d3d:"bit.ly, tinyurl zisizojulikana",d4t:"Kuomba CVV/PIN",d4d:"Benki HAIOMBI password WhatsApp",d5t:"Kiswahili Kibovu",d5d:"Tafsiri ya Google ya ovyo",d6t:"Namba ya Kigeni",d6d:"+1, +44 inayosema ni Vodacom",d7t:"Lipia Ushinde",d7d:"Lipia ili upate kazi/mkopo",d8t:"Kuomba OTP",d8d:"Usitume OTP kamwe",d9t:"Bahati Nasibu Bandia",d9d:"Umeshinda usiyoshiriki",d10t:"Akaunti Mpya Haina Historia",d10d:"Akaunti ya leo tu",waT:"👮 Ume Kutana na Tapeli?",waD:"Ripoti sasa hivi moja kwa moja.",btnL:"EN",verifyT:"🔍 Ukaguzi wa Taarifa"},
+en:{badge:"PEMBA PROTECTION",title:'Detect <span>Scam</span> Before You Lose',desc:"Paste WhatsApp, SMS or link here. AI analyzes instantly.",btn:"Check Now - Fast ⚡",saved:"saved",how:"How it works",s1:"Paste Message",s1d:"Copy from WhatsApp/SMS",s2:"AI Analyzes",s2d:"Checks 10 scam signs",s3:"Get Answer",s3d:"And counter increases!",flag:"🚩 10 Signs of Scam",d1t:"Big Money Promise",d1d:'"You won $5000" without entry',d2t:"Hurry Up!",d2d:'"Click within 1 hour"',d3t:"Weird Link",d3d:"bit.ly, tinyurl unknown",d4t:"Asking CVV/PIN",d4d:"Bank NEVER asks password on WhatsApp",d5t:"Bad Language",d5d:"Poor Google translation",d6t:"Foreign Number",d6d:"+1, +44 claiming to be Vodacom",d7t:"Pay to Win",d7d:"Pay to get job/loan",d8t:"OTP Request",d8d:"Never share OTP/code",d9t:"Fake Lottery",d9d:"Won lottery you never entered",d10t:"New Account No History",d10d:"Social account created today",waT:"👮 Met a Scammer?",waD:"Report now directly. Help save others.",btnL:"SW",verifyT:"🔍 Verify Report"}
+};
+function toggleLang(){
+lang = lang==='sw'?'en':'sw';
+let d=dict[lang];
+document.getElementById('langBtn').innerText=d.btnL;
+document.getElementById('t-badge').innerText=d.badge;
+document.getElementById('t-title').innerHTML=d.title;
+document.getElementById('t-desc').innerText=d.desc;
+document.getElementById('t-btn').innerText=d.btn;
+document.getElementById('t-saved').innerText=d.saved;
+document.getElementById('t-how').innerText=d.how;
+document.getElementById('t-s1').innerText=d.s1;
+document.getElementById('t-s1d').innerText=d.s1d;
+document.getElementById('t-s2').innerText=d.s2;
+document.getElementById('t-s2d').innerText=d.s2d;
+document.getElementById('t-s3').innerText=d.s3;
+document.getElementById('t-s3d').innerText=d.s3d;
+document.getElementById('t-flag').innerText=d.flag;
+for(let i=1;i<=10;i++){document.getElementById('d'+i+'t').innerText=d['d'+i+'t']; document.getElementById('d'+i+'d').innerText=d['d'+i+'d'];}
+document.getElementById('t-wa-title').innerText=d.waT;
+document.getElementById('t-wa-desc').innerText=d.waD;
+document.getElementById('t-verify-title').innerText=d.verifyT;
+}
+toggleLang();toggleLang();
+let hasSponsor=localStorage.getItem('sponsor_active')==='true';
+if(hasSponsor) document.getElementById('adSection').classList.add('active');
+function enableSponsor(html){localStorage.setItem('sponsor_active','true');document.getElementById('adSection').classList.add('active'); if(html) document.getElementById('adContent').innerHTML=html;}
+</script>
+</body>
+</html>
